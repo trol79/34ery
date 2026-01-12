@@ -4,6 +4,23 @@ import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split, GridSearchCV
+import os 
+
+if __name__ == '__main__':
+    # Load or train the model
+    load_model()
+    
+    # Get port from environment variable (Railway provides this)
+    port = int(os.environ.get('PORT', 5000))
+    
+    print("\n" + "="*50)
+    print("🚀 Sarcasm Detection Web App is running!")
+    print(f"📱 Port: {port}")
+    print("="*50 + "\n")
+    
+    # Use 0.0.0.0 to allow external connections
+    app.run(host='0.0.0.0', port=port, debug=False)
+
 
 app = Flask(__name__)
 
